@@ -1,6 +1,9 @@
 import * as React from 'react'
 
-const List = () => {
+const List:React.FC = (props) => {
+  
+  console.log(props)
+  
   return (
     <div>
       nmdsnds

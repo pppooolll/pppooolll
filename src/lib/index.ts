@@ -4,7 +4,7 @@ import { contentSort, fileObjectProps } from './contentSort.js'
 import config from './rune.config.js'
 
 interface routeObjectProps {
-  route: fileObjectProps[][]
+  route: fileObjectProps[]
 }
 
 const index = async () => {
@@ -26,10 +26,14 @@ const index = async () => {
   )
 
   let routeObject : routeObjectProps = {
-    route : await routeArray
+    route : (await routeArray).flat(1)
+  }
+  
+  if (!fs.existsSync('./src/api')){
+    fs.mkdirSync('./src/api');
   }
 
-  fs.writeFile(`./src/api/routes.json`, JSON.stringify(routeObject.route.flat(1)), (err)=> {
+  fs.writeFile(`./src/api/generatedRoutes.json`, JSON.stringify(routeObject.route.flat(1)), (err)=> {
     if(err) {
       console.log('Error writing file', err)
     } else {
