@@ -3,10 +3,10 @@ import { getAliases } from 'vite-aliases'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import WindiCSS from 'vite-plugin-windicss'
 
-const contentAlias = getAliases({
-  path: './contents',
-  depth: 2
-});
+// const contentAlias = getAliases({
+//   path: './contents',
+//   depth: 2
+// });
 
 const srcAlias = getAliases({
   depth: 2
@@ -19,6 +19,7 @@ export default defineConfig({
     WindiCSS(),
   ],
   resolve: {
-    alias:[...contentAlias, ...srcAlias]
+    // alias:[...contentAlias, ...srcAlias]
+    alias: srcAlias
   }
 })

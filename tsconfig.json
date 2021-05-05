@@ -18,8 +18,8 @@
     "paths": {
       "@images/*": ["./src/assets/images/*"],
       "@styles/*": ["./src/assets/style/*"],
-      "@pages/*": ["./contents/pages/*"],
-      "@portfolios/*": ["./contents/articles/*"],
+      "@pages/*": ["./src/contents/pages/*"],
+      "@portfolios/*": ["./src/contents/articles/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@components/*": ["./src/components/*"],
       "@lib/*": ["./src/lib/*"],
