@@ -3,10 +3,9 @@ import { fileObjectProps } from '@lib/contentSort'
 import ImageList from '@lib/components/ImageList'
 
 const Detail:React.FC<fileObjectProps> = (props) => {
-  
   return (
     <div>
-      <ImageList images={props.images}/>
+      <ImageList title={props.title} images={props.images}/>
       BBBB
     </div>
   )
