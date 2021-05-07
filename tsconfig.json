@@ -18,13 +18,13 @@
     "paths": {
       "@images/*": ["./src/assets/images/*"],
       "@styles/*": ["./src/assets/style/*"],
-      "@pages/*": ["./src/contents/pages/*"],
-      "@portfolios/*": ["./src/contents/articles/*"],
+      "@pages/*": ["./contents/pages/*"],
+      "@portfolios/*": ["./contents/articles/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@components/*": ["./src/components/*"],
       "@lib/*": ["./src/lib/*"],
       "@api/*": ["./src/api/*"]
     },
   },
-  "include": ["./src"]
+  "include": ["./src", "./contents"]
 }
