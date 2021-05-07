@@ -11,7 +11,7 @@ const ImageList:React.FC<imageListProps> = ({images, title}) => {
     Promise.all(
       images.map((x)=>{
         const str = x.replace(/\.\/(\S*)\.jpg/g,'$1')
-        return import (`../../../${str}.jpg`)
+        return import (`../../${str}.jpg`)
       })
     ).then(
       (x)=> {setImageArray(x)}
