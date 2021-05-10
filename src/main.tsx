@@ -1,14 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'virtual:windi.css'
-import App from '@layouts/App'
 import { BrowserRouter } from 'react-router-dom'
+import { RecoilRoot } from 'recoil'
+import App from '@layouts/App'
+import TopBar from '@components/navigation/TopBar'
+import 'virtual:windi.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App/>
-    </BrowserRouter>
+    <RecoilRoot>
+      <BrowserRouter>
+        <TopBar/>
+        <App/>
+      </BrowserRouter>
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
 )

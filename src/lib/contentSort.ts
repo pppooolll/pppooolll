@@ -2,11 +2,10 @@ import fg from 'fast-glob'
 import _groupBy from 'lodash.groupby'
 
 interface fileObjectProps {
-  title:string,
-  type: string,
   images:string[],
-  page:string,
-  url:string
+  markdown:string,
+  type: string,
+  url: string,
 }
 
 const fileList = async (src:string, depth:number) => {
@@ -38,26 +37,23 @@ const contentSort = async (src:string, depth:number) => {
 
   Object.keys(fileArray).map((element) => {
     let fileObject:fileObjectProps = {
-      title: '',
+      images: [],
+      markdown: '',
       type: '',
       url: '',
-      images: [],
-      page: ''
     }
-
-    fileObject.title = element.replace(/([A-Z])/g, '$1').trim()
-
-    fileObject.type = src.replace(/\.\/contents\/(\w*)/g, '$1')
-
-    fileObject.url = `${src.replace(/\.\/contents\/(\w*)/g, '$1')}/${element.toLowerCase()}`
 
     fileObject.images = fileArray[element].filter((str)=>{
       return /\.(?:jpg|gif|png)/g.test(str)
     })
 
-    fileObject.page = fileArray[element].filter((str)=>{
+    fileObject.type = src.replace(/\.\/contents\/(\w*)/g, '$1')
+
+    fileObject.markdown = fileArray[element].filter((str)=>{
       return /\.(?:md[x]?)/g.test(str)
     })[0]
+
+    fileObject.url = `${src.replace(/\.\/contents\/(\w*)/g, '$1')}/${element.toLowerCase()}`
 
     fileObjects.push(fileObject)
   });
