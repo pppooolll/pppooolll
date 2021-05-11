@@ -6,7 +6,7 @@ import RightTop from './RightTop'
 
 const TopBar = () => {
   return (
-    <nav id='topNavigation' className='flex flex-wrap justify-between px-3 py-2 border-b border-gray-300 fixed w-full bg-gray-100'>
+    <nav id='topNavigation' className='flex flex-wrap justify-between px-3 py-2 border-b border-gray-100 fixed w-full'>
       <LeftTop/>
       <CenterTop/>
       <RightTop/>

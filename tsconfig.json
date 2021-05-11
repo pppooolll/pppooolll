@@ -20,10 +20,12 @@
       "@styles/*": ["./src/assets/style/*"],
       "@pages/*": ["./contents/pages/*"],
       "@portfolios/*": ["./contents/articles/*"],
+      "@navigations/*": ["./contents/navigations/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@components/*": ["./src/components/*"],
       "@lib/*": ["./src/lib/*"],
-      "@api/*": ["./src/api/*"]
+      "@api/*": ["./src/api/*"],
+      "@/*": ["./*"]
     },
   },
   "include": ["./src", "./contents"]

@@ -33,7 +33,7 @@ const Description:React.FC<DescriptionProps> = ({md}) => {
   const markdown = useRecoilValue(mdxAtom)
 
   const str = md.replace(/\.(\S*)/g, '$1')
-  console.log(markdown[str].attributes)
+
   return (
     <div className='w-lg'>
       {React.createElement(markdown[str].ReactComponent)}
