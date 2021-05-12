@@ -10,7 +10,7 @@ const Images:React.FC<ImagesProps> = ({images}) => {
   const image = useRecoilValue(imageArrayAtom)
 
   if(image) return (
-    <div className='space-y-3'>
+    <div className='space-y-3 my-7'>
     {
       images.map((x,index)=> {
         const str = x.replace(/\.(\S*)/g, '$1')
@@ -19,7 +19,7 @@ const Images:React.FC<ImagesProps> = ({images}) => {
             key={index}
             src={image[str].default}
             alt='test'
-            className='w-xl rounded-xl border-1 border-gray-300'
+            className='w-xl rounded-lg border-1 border-gray-300'
           />
         )
       })

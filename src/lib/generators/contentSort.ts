@@ -1,33 +1,11 @@
-import fg from 'fast-glob'
 import _groupBy from 'lodash.groupby'
+import fileSort from './fileSort.js'
 
 interface fileObjectProps {
   images:string[],
   markdown:string,
   type: string,
   url: string,
-}
-
-const fileList = async (src:string, depth:number) => {
-    const files = await fg([
-      `${src}/**`,
-    ], 
-    {
-      dot:true,
-      deep: depth
-    });
-    return files
-}
-
-const fileSort = async (src:string, depth:number = 1) => {
-  const fileArray = await fileList(src,depth)
-  const regex = new RegExp(`${src}\/((\\w.*)\/|(\\w*))\\S*\.\\w*`,'g')
-
-  const items = await _groupBy(fileArray, (str)=> {
-    return depth > 1 ? str.replace(regex,'$2') : str.replace(regex,'$3')
-  })
-
-  return items
 }
 
 const contentSort = async (src:string, depth:number) => {

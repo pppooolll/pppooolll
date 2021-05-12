@@ -6,26 +6,18 @@ interface DescriptionProps {
   md: string;
 }
 
-interface AttributesProps {
-  name:string;
-  tags:string[];
-}
-
-const Attributes:React.FC<AttributesProps> = ({name,tags}) => {
+const Tags:React.FC<{tags:string[]}> = ({tags}) => {
   return (
-    <>
     <div>
-      <span>name :</span>{name}
-    </div>
-    <div>
-      <span>tags :</span>
+      <div className='font-semibold text-gray-600 text-sm mb-2'>Tags :</div>
+      <div className='space-x-2'>
       {
         tags.map((x,index)=> {
-          return <span key={index}>{x}</span>
+          return <span key={index} className='bg-opacity-40 bg-orange-200 text-xs p-2 rounded-xl'>{x}</span>
         })
       }
+      </div>
     </div>
-    </>
   )
 }
 
@@ -35,9 +27,9 @@ const Description:React.FC<DescriptionProps> = ({md}) => {
   const str = md.replace(/\.(\S*)/g, '$1')
 
   return (
-    <div className='w-lg'>
+    <div className='w-23rem xl:w-52rem'>
       {React.createElement(markdown[str].ReactComponent)}
-      <Attributes {...markdown[str].attributes}/>
+      <Tags tags={markdown[str].attributes.tags}/>
     </div>
   )
 }

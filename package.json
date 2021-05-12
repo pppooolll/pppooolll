@@ -4,17 +4,20 @@
   "scripts": {
     "dev": "vite",
     "gen:route": "node --loader ts-node/esm ./src/lib/index.ts",
+    "gen:portfolio": "node --loader ts-node/esm ./src/lib/generators/portfolioSort.ts",
     "build": "tsc && vite build",
     "prebuild": "npm run gen:route",
     "serve": "vite preview"
   },
   "dependencies": {
+    "@types/yaml-front-matter": "^4.1.0",
     "fast-glob": "^3.2.5",
     "lodash.groupby": "^4.6.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "^5.2.0",
-    "recoil": "^0.2.0"
+    "recoil": "^0.2.0",
+    "yaml-front-matter": "^4.1.1"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.13.13",

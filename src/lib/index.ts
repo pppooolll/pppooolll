@@ -1,10 +1,17 @@
 import fs from 'fs'
 import fg from 'fast-glob'
-import { contentSort, fileObjectProps } from './contentSort.js'
+import { contentSort, fileObjectProps } from './generators/contentSort.js'
+import { portfolioSort } from './generators/portfolioSort.js'
 import config from './rune.config.js'
+import markdownSort, { markdownObjectProps } from './generators/markdownSort.js'
 
 interface routeObjectProps {
   route: fileObjectProps[]
+}
+
+interface portfolioObjectProps {
+  tags: string[];
+  detail: markdownObjectProps[];
 }
 
 const index = async () => {
@@ -25,7 +32,30 @@ const index = async () => {
     })
   )
 
-  let routeObject : routeObjectProps = {
+  const portfolioArray = await Promise.all(
+    dirList.map(async (x)=> {
+      if(x.includes('portfolios')) return await portfolioSort(x, 2)
+    })
+  )
+
+  const markdownArray = await Promise.all(
+    dirList.map(async (x)=> {
+      return await markdownSort(x, 2)
+    })
+  )
+
+  const portfolioTags = [...new Set(
+    portfolioArray.flat(1).map((x)=> {
+      return x?.tags
+    }).filter((x)=> {return x !== undefined}).flat(1)
+  )]
+
+  const portfolioObject : portfolioObjectProps = {
+    tags : portfolioTags,
+    detail: markdownArray.flat(1)
+  }
+
+  const routeObject : routeObjectProps = {
     route : (await routeArray).flat(1)
   }
   
@@ -33,13 +63,20 @@ const index = async () => {
     fs.mkdirSync('./src/api');
   }
 
+  fs.writeFile(`./src/api/generatedPortfolios.json`, JSON.stringify(portfolioObject), (err)=> {
+    if(err) {
+      console.log('Error writing Portfolios and Props', err)
+    } else {
+      console.log('Successfully wrote Portfolios and Props')
+    }
+  })
+
   fs.writeFile(`./src/api/generatedRoutes.json`, JSON.stringify(routeObject.route.flat(1)), (err)=> {
     if(err) {
-      console.log('Error writing file', err)
+      console.log('Error writing Routes and Props', err)
     } else {
-      console.log('Successfully wrote file')
+      console.log('Successfully wrote Routes and Props')
     }
-    process.exit()
   })
 }
 

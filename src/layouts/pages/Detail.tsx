@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { fileObjectProps } from '@lib/contentSort'
+import { fileObjectProps } from '@lib/generators/contentSort'
 import { useRecoilValue } from 'recoil'
 import { mdxAtom } from '@lib/store'
 
